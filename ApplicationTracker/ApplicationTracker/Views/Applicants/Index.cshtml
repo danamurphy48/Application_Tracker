@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ApplicationTracker.Models.Application>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateApplied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResumeUsed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoverLetter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalaryRequested)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequistionNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateApplied)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResumeUsed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoverLetter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalaryRequested)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequistionNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
