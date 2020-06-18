@@ -22,11 +22,40 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: ApplicantsController
-        public IActionResult Index()
+        public IActionResult Index(Application application)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+            if(!ApplicationsExist(application.ApplicationId))
+            {
+                return RedirectToAction(nameof(CreateApplication)); //change to redirecttoAction CreateApplication or 'go apply for jobs'
+            }
             return View(applicant);
+        }
+
+        private bool ApplicationsExist(int id)
+        {
+            return _context.Applications.Any(a => a.ApplicationId == id);
+        }
+
+        public IActionResult CreateApplication()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateApplicationAsync(Application application)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+            if (!ApplicationsExist(application.ApplicantId))
+            {
+                _context.Applications.Add(application);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View("CreateApplication", application);
         }
 
         // GET: ApplicantsController/Details/5
@@ -36,7 +65,7 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: ApplicantsController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
