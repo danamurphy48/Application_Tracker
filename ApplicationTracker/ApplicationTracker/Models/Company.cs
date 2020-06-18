@@ -16,9 +16,9 @@ namespace ApplicationTracker.Models
         [Display(Name ="Office Location")]
         public string OfficeLocation { get; set; }
 
-        [ForeignKey("Application")]
-        public int ApplicationId { get; set; }
-        public Application Application { get; set; }
+        //[ForeignKey("Application")]
+        //public int ApplicationId { get; set; }
+        //public Application Application { get; set; }
 
         [ForeignKey("Address")]
         public int AddressId { get; set; }
