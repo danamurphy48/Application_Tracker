@@ -4,7 +4,7 @@
     ViewData["Title"] = "CreateApplication";
 }
 
-<h1>CreateApplication</h1>
+<h1>Create Application</h1>
 
 <h4>Application</h4>
 <hr />
@@ -12,11 +12,11 @@
     <div class="col-md-4">
         <form asp-action="CreateApplication">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="ApplicationId" class="control-label"></label>
                 <input asp-for="ApplicationId" class="form-control" />
                 <span asp-validation-for="ApplicationId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="PositionTitle" class="control-label"></label>
                 <input asp-for="PositionTitle" class="form-control" />
@@ -57,7 +57,7 @@
                 <input asp-for="ApplicationStatus" class="form-control" />
                 <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="CompanyId" class="control-label"></label>
                 <input asp-for="CompanyId" class="form-control" />
                 <span asp-validation-for="CompanyId" class="text-danger"></span>
@@ -66,17 +66,17 @@
                 <label asp-for="NetworkId" class="control-label"></label>
                 <input asp-for="NetworkId" class="form-control" />
                 <span asp-validation-for="NetworkId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+            @*<div class="form-group">
                 <label asp-for="ApplicantId" class="control-label"></label>
                 <input asp-for="ApplicantId" class="form-control" />
                 <span asp-validation-for="ApplicantId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+            @*<div class="form-group">
                 <label asp-for="JobInfoId" class="control-label"></label>
                 <input asp-for="JobInfoId" class="form-control" />
                 <span asp-validation-for="JobInfoId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
