@@ -32,5 +32,16 @@ namespace ApplicationTracker.Models
         public int CompanyId { get; set; }
         public Company Company { get; set; }
         
+        [ForeignKey("Network")]
+        public int NetworkId { get; set; }
+        public Network Network { get; set; }
+
+        [ForeignKey("Applicant")]
+        public int ApplicantId { get; set; }
+        public Applicant Applicant { get; set; }
+        
+        [ForeignKey("JobInformation")]
+        public int JobInfoId { get; set; }
+        public JobInformation JobInformation { get; set; }
     }
 }
