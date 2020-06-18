@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ApplicationTracker.Models.Application>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index1";
 }
 
-<h1>Index</h1>
+<h1>Index1</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -42,6 +42,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.CompanyId)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetworkId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicantId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobInfoId)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -77,6 +86,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CompanyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetworkId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobInfoId)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
