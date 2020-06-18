@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ApplicationTracker.Models
 {
-    public class HiringManager
+    public class Interviewer
     {
         [Key]
-        public int HiringManagerId { get; set; }
+        public int InterviewerId { get; set; }
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
         [Display(Name ="Last Name")]
         public string LastName { get; set; }
-       // [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string Notes { get; set; }
     }
 }
