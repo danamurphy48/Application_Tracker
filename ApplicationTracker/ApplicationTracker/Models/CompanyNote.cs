@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationTracker.Models
 {
-    public class CompanyNotes
+    public class CompanyNote
     {
         [Key]
         public int CompanyNotesId { get; set; }

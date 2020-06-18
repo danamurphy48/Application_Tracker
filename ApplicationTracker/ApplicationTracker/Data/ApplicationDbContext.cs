@@ -11,6 +11,10 @@ namespace ApplicationTracker.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<Application> Applications { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<CompanyNote> CompanyNotes { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

@@ -28,8 +28,8 @@ namespace ApplicationTracker.Models
         //public int HiringManagerId { get; set; }
         //public HiringManager HiringManager { get; set; }
 
-        [ForeignKey("CompanyNotes")]
+        [ForeignKey("CompanyNote")]
         public int CompanyNotesId { get; set; }
-        public CompanyNotes CompanyNotes { get; set; }
+        public CompanyNote CompanyNote { get; set; }
     }
 }
