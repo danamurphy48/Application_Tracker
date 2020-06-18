@@ -44,7 +44,7 @@ namespace ApplicationTracker.Controllers
         // POST: ApplicantsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync(Applicant applicant)
+        public async Task<IActionResult> CreateAsync([Bind("ApplicantId,FirstName,LastName,Industry,Email")] Applicant applicant)
         {
             if (ModelState.IsValid)
             {

@@ -77,7 +77,7 @@ namespace ApplicationTracker.Areas.Identity.Pages.Account
             Roles = new SelectList(roles, "Name", "Name");
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string returnUrl = "/Applicants/Create")
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
