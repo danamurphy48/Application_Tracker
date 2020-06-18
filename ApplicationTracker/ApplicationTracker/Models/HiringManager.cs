@@ -11,8 +11,8 @@ namespace ApplicationTracker.Models
         [Key]
         public int HiringManagerId { get; set; }
         public string Name { get; set; }
-        [DataType(DataType.PhoneNumber)]
+       // [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
-        public EmailAddressAttribute Email { get; set; }
+        public string Email { get; set; }
     }
 }
