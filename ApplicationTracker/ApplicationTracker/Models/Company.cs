@@ -24,9 +24,9 @@ namespace ApplicationTracker.Models
         public int AddressId { get; set; }
         public Address Address { get; set; }
 
-        [ForeignKey("HiringManager")]
-        public int HiringManagerId { get; set; }
-        public HiringManager HiringManager { get; set; }
+        //[ForeignKey("HiringManager")]
+        //public int HiringManagerId { get; set; }
+        //public HiringManager HiringManager { get; set; }
 
         [ForeignKey("CompanyNotes")]
         public int CompanyNotesId { get; set; }
