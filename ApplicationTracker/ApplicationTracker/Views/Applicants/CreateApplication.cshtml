@@ -12,11 +12,11 @@
     <div class="col-md-4">
         <form asp-action="CreateApplication">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="ApplicationId" class="control-label"></label>
-                <input asp-for="ApplicationId" class="form-control" />
-                <span asp-validation-for="ApplicationId" class="text-danger"></span>
-            </div>*@
+            <div class="form-group">
+                <label asp-for="Company.CompanyName" class="control-label"></label>
+                <input asp-for="Company.CompanyName" class="form-control" />
+                <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="PositionTitle" class="control-label"></label>
                 <input asp-for="PositionTitle" class="form-control" />
@@ -57,6 +57,11 @@
                 <input asp-for="ApplicationStatus" class="form-control" />
                 <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+                <label asp-for="ApplicationId" class="control-label"></label>
+                <input asp-for="ApplicationId" class="form-control" />
+                <span asp-validation-for="ApplicationId" class="text-danger"></span>
+            </div>*@
             @*<div class="form-group">
                 <label asp-for="CompanyId" class="control-label"></label>
                 <input asp-for="CompanyId" class="form-control" />

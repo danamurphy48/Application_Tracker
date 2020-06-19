@@ -14,14 +14,14 @@ namespace ApplicationTracker.Models
         [Display(Name = "Company")]
         public string CompanyName { get; set; }
         [Display(Name ="Office Location")]
-        public string OfficeLocation { get; set; }
+        public string? OfficeLocation { get; set; }
 
         //[ForeignKey("Application")]
         //public int ApplicationId { get; set; }
         //public Application Application { get; set; }
 
         [ForeignKey("Address")]
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
 
         //[ForeignKey("HiringManager")]
@@ -29,7 +29,7 @@ namespace ApplicationTracker.Models
         //public HiringManager HiringManager { get; set; }
 
         [ForeignKey("CompanyNote")]
-        public int CompanyNotesId { get; set; }
+        public int? CompanyNotesId { get; set; }
         public CompanyNote CompanyNote { get; set; }
     }
 }

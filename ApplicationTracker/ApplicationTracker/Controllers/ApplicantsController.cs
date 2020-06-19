@@ -28,6 +28,8 @@ namespace ApplicationTracker.Controllers
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
             if(!ApplicationsExist(application.ApplicationId))
             {
+                //return RedirectToAction("CreateApplication");
+                //return RedirectToAction("Index", "Interviews");
                 return RedirectToAction(nameof(CreateApplication)); //change to redirecttoAction CreateApplication or 'go apply for jobs'
             }
             return View(applicant);

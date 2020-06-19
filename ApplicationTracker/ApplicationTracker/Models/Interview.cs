@@ -30,11 +30,11 @@ namespace ApplicationTracker.Models
         public Application Application { get; set; }
 
         [ForeignKey("HiringManager")]
-        public int HiringManagerId { get; set; }
+        public int? HiringManagerId { get; set; }
         public HiringManager HiringManager { get; set; }
         
         [ForeignKey("Interviewer")]
-        public int InterviewerId { get; set; }
+        public int? InterviewerId { get; set; }
         public Interviewer Interviewer { get; set; }
     }
 }

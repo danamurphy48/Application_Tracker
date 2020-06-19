@@ -12,7 +12,7 @@ namespace ApplicationTracker.Models
         [Key]
         public int ApplicationId { get; set; }
         [Display(Name ="Position Title")]
-        public int PositionTitle { get; set; }
+        public string PositionTitle { get; set; }
         [Display(Name ="Date Applied")]
         public DateTime DateApplied { get; set; }
         [Display(Name ="Resume Used - File Name")]
@@ -29,11 +29,11 @@ namespace ApplicationTracker.Models
         public string ApplicationStatus { get; set; }
 
         [ForeignKey("Company")]
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public Company Company { get; set; }
         
         [ForeignKey("Network")]
-        public int NetworkId { get; set; }
+        public int? NetworkId { get; set; }
         public Network Network { get; set; }
 
         [ForeignKey("Applicant")]
@@ -41,7 +41,7 @@ namespace ApplicationTracker.Models
         public Applicant Applicant { get; set; }
         
         [ForeignKey("JobInformation")]
-        public int JobInfoId { get; set; }
+        public int? JobInfoId { get; set; }
         public JobInformation JobInformation { get; set; }
     }
 }
