@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ApplicationTracker.Controllers
 {        
-    [Authorize(Roles ="Applicant")]
+    //[Authorize(Roles ="Applicant")]
     public class ApplicantsController : Controller
     {
         private readonly ApplicationDbContext _context;
