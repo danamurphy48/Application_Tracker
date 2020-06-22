@@ -29,7 +29,7 @@ namespace ApplicationTracker.Models
         public string ApplicationStatus { get; set; }
 
         [ForeignKey("Company")]
-        public int? CompanyId { get; set; }
+        public int CompanyId { get; set; }
         public Company Company { get; set; }
         
         [ForeignKey("Network")]

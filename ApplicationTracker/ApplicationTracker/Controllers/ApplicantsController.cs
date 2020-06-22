@@ -22,22 +22,32 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: ApplicantsController
-        public IActionResult Index(Application application)
+        public IActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
-            if(!ApplicationsExist(application.ApplicationId))
+            var applicantapplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).ToList();
+            if(applicantapplications == null) //do i need applicant.application.ApplicationId to find only applications tied to that applicant
             {
                 //return RedirectToAction("CreateApplication");
                 //return RedirectToAction("Index", "Interviews");
                 return RedirectToAction(nameof(CreateApplication)); //change to redirecttoAction CreateApplication or 'go apply for jobs'
             }
-            return View(applicant);
+            return View(applicantapplications);
         }
 
-        private bool ApplicationsExist(int id)
+        private bool ApplicationsExist(List<Application> applications)
         {
-            return _context.Applications.Any(a => a.ApplicationId == id);
+            if(applications == null)
+            {
+                return false;
+            }
+            return true;
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var applicant1 = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+            //return _context.Applications.Any(a => a.ApplicationId == id);
+            //_context.Applications.Where(a => a.ApplicantId == applicant1.ApplicantId);
+            //return applicant1;
         }
 
         public IActionResult CreateApplication()
@@ -51,13 +61,14 @@ namespace ApplicationTracker.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
-            if (!ApplicationsExist(application.ApplicantId))
-            {
+            //if (!ApplicationsExist(application.ApplicantId/*, applicant*/))
+            //{
+                application.ApplicantId = applicant.ApplicantId;
                 _context.Applications.Add(application);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View("CreateApplication", application);
+            //}
+            //return View("CreateApplication", application);
         }
 
         // GET: ApplicantsController/Details/5
