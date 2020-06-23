@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ApplicationTracker.Controllers
 {        
@@ -25,7 +26,7 @@ namespace ApplicationTracker.Controllers
         // GET: ApplicantsController
         public IActionResult Index()
         {
-            ApplicationViewModel applicationViewModel = new ApplicationViewModel();
+            ApplicationIndexViewModel applicationViewModel = new ApplicationIndexViewModel();
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
             var applicantapplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).ToList();
@@ -35,7 +36,18 @@ namespace ApplicationTracker.Controllers
                 //return RedirectToAction("Index", "Interviews");
                 return RedirectToAction(nameof(CreateApplication)); //change to redirecttoAction CreateApplication or 'go apply for jobs'
             }
-            return View("Index", applicantapplications);
+            Company company = new Company();
+            company.CompanyName = applicationViewModel.Company.CompanyName;
+            //var companyName = _context.Companies.Where(c => c.CompanyName == app
+            //var companyAddress = _context.Applications.Include("Company").ThenInclude("Address")
+            //var upcomingInterveiws = final all interviews I want to display
+            //var upcomingapplications = find all applications I want to display
+            //applicationViewModel.UpcomingInterviews = //that query
+            var UpcomingApplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).Include(a => a.Company).ThenInclude(c => c.Address).ToList();
+            applicationViewModel.UpcomingApplications = UpcomingApplications;
+
+            applicationViewModel.Company.CompanyName = CompanyName;
+            return View("applicationViewModel", applicantapplications);
         }
 
         private bool ApplicationsExist(List<Application> applications)
