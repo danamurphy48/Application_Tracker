@@ -102,7 +102,7 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: ApplicantsController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             var applicant = _context.Applicants.Where(i => i.ApplicantId == id).SingleOrDefault();
             return View(applicant);
@@ -126,7 +126,7 @@ namespace ApplicationTracker.Controllers
         // POST: ApplicantsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Applicant applicant)
+        public IActionResult Edit(int id, Applicant applicant)
         {
             try
             {
