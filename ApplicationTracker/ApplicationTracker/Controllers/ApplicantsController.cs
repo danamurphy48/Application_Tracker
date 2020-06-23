@@ -25,6 +25,7 @@ namespace ApplicationTracker.Controllers
         // GET: ApplicantsController
         public IActionResult Index()
         {
+            ApplicationViewModel applicationViewModel = new ApplicationViewModel();
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
             var applicantapplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).ToList();
@@ -34,7 +35,7 @@ namespace ApplicationTracker.Controllers
                 //return RedirectToAction("Index", "Interviews");
                 return RedirectToAction(nameof(CreateApplication)); //change to redirecttoAction CreateApplication or 'go apply for jobs'
             }
-            return View(applicantapplications);
+            return View("Index", applicantapplications);
         }
 
         private bool ApplicationsExist(List<Application> applications)
@@ -178,16 +179,20 @@ namespace ApplicationTracker.Controllers
         // GET: ApplicantsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var applicant = _context.Applicants.Where(i => i.ApplicantId == id).FirstOrDefault();
+            return View(applicant);
         }
 
         // POST: ApplicantsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Applicant applicant)
         {
             try
             {
+                var applicantDeletion = _context.Applicants.Where(i => i.ApplicantId == id).FirstOrDefault();
+                _context.Applicants.Remove(applicantDeletion);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
