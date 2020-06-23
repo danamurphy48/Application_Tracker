@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApplicationTracker.Controllers
 {        
@@ -103,16 +104,35 @@ namespace ApplicationTracker.Controllers
         // GET: ApplicantsController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var applicant = _context.Applicants.Where(i => i.ApplicantId == id).SingleOrDefault();
+            return View(applicant);
         }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
+        //    var applicant = await _context.Applicants.FindAsync(id);
+
+        //    if (applicant == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(applicant);
+        //}
         // POST: ApplicantsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Applicant applicant)
         {
             try
             {
+                _context.Applicants.Where(i => i.ApplicantId == id).SingleOrDefault();
+                _context.Applicants.Update(applicant);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -120,7 +140,41 @@ namespace ApplicationTracker.Controllers
                 return View();
             }
         }
+        //public async Task<IActionResult> Edit(int id, [Bind("ApplicantId,FirstName,LastName,Industry,Email,IdentityUserId")] Applicant applicant)
+        //{
 
+        //    if (id != applicant.ApplicantId)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(applicant);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!ApplicantExists(applicant.ApplicantId))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(applicant);
+        //}
+
+        //private bool ApplicantExists(int id)
+        //{
+        //    return _context.Applicants.Any(a => a.ApplicantId == id);
+        //}
         // GET: ApplicantsController/Delete/5
         public ActionResult Delete(int id)
         {
