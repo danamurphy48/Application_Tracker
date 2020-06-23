@@ -28,7 +28,7 @@ namespace ApplicationTracker.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
             var applicantapplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).ToList();
-            if(applicantapplications == null) //do i need applicant.application.ApplicationId to find only applications tied to that applicant
+            if(applicantapplications.Count == 0) //do i need applicant.application.ApplicationId to find only applications tied to that applicant
             {
                 //return RedirectToAction("CreateApplication");
                 //return RedirectToAction("Index", "Interviews");
