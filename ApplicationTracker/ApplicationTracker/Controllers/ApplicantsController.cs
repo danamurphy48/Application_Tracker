@@ -36,8 +36,8 @@ namespace ApplicationTracker.Controllers
                 //return RedirectToAction("Index", "Interviews");
                 return RedirectToAction(nameof(CreateApplication)); //change to redirecttoAction CreateApplication or 'go apply for jobs'
             }
-            Company company = new Company();
-            company.CompanyName = applicationViewModel.Company.CompanyName;
+            //Company company = new Company();
+            //company.CompanyName = applicationViewModel.Company.CompanyName;
             //var companyName = _context.Companies.Where(c => c.CompanyName == app
             //var companyAddress = _context.Applications.Include("Company").ThenInclude("Address")
             //var upcomingInterveiws = final all interviews I want to display
@@ -46,8 +46,18 @@ namespace ApplicationTracker.Controllers
             var UpcomingApplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).Include(a => a.Company).ThenInclude(c => c.Address).ToList();
             applicationViewModel.UpcomingApplications = UpcomingApplications;
 
-            applicationViewModel.Company.CompanyName = CompanyName;
-            return View("applicationViewModel", applicantapplications);
+            var UpcomingInterviews = _context.Interviews
+                .Where(i => i.Application.ApplicantId == applicant.ApplicantId)
+                .Include(i => i.Application)
+                .ThenInclude(i => i.Company)
+                .ThenInclude(i => i.Address)
+                .Include(i => i.Interviewer)
+                .Include(i => i.HiringManager)
+                .ToList();
+            applicationViewModel.UpcomingInterviews = UpcomingInterviews;
+
+            //applicationViewModel.Company.CompanyName = CompanyName;
+            return View("applicationViewModel"/*, applicantapplications*/);
         }
 
         private bool ApplicationsExist(List<Application> applications)
