@@ -25,8 +25,7 @@ namespace ApplicationTracker.Controllers
 
         // GET: ApplicantsController
         public IActionResult Index()
-        {
-            ApplicationIndexViewModel applicationViewModel = new ApplicationIndexViewModel();
+        {   
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
             var applicantapplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).ToList();
@@ -43,21 +42,31 @@ namespace ApplicationTracker.Controllers
             //var upcomingInterveiws = final all interviews I want to display
             //var upcomingapplications = find all applications I want to display
             //applicationViewModel.UpcomingInterviews = //that query
-            var UpcomingApplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId && ).Include(a => a.Company).ThenInclude(c => c.CompanyNote).ToList();
-            applicationViewModel.UpcomingApplications = UpcomingApplications;
 
+            ApplicationIndexViewModel applicationViewModel = new ApplicationIndexViewModel();
+            var UpcomingApplications = _context.Applications
+                .Where(a => a.ApplicantId == applicant.ApplicantId)
+                .Include(a => a.JobInformation)
+                .Include(a => a.Company)
+                    .ThenInclude(a => a.CompanyNote)
+                .ToList();
+            applicationViewModel.UpcomingApplications = UpcomingApplications;
+            //cascading query ! //do I want to rename UpcomingApplications here so that I can use it for Upcoming interviews?
             var UpcomingInterviews = _context.Interviews
                 .Where(i => i.Application.ApplicantId == applicant.ApplicantId)
-                .Include(i => i.Application)
-                .ThenInclude(i => i.Company)
-                .ThenInclude(i => i.Address)
+                //.Where(i => i.ApplicationId == .)
                 .Include(i => i.Interviewer)
                 .Include(i => i.HiringManager)
+                .Include(i => i.Application)
+                    .ThenInclude(i => i.Company)
+                    .ThenInclude(i => i.CompanyNote)
+               // .Include(i => i.Address) 
                 .ToList();
+            UpcomingInterviews = _context.Interviews.Include(i => i.Application.Company.Address).ToList();
             applicationViewModel.UpcomingInterviews = UpcomingInterviews;
 
             //applicationViewModel.Company.CompanyName = CompanyName;
-            return View("applicationViewModel"/*, applicantapplications*/);
+            return View(applicationViewModel/*, applicantapplications*/);
         }
 
         private bool ApplicationsExist(List<Application> applications)
