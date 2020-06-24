@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Profile</h1>
 
 <div>
     <h4>Applicant</h4>
@@ -49,6 +49,7 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit Your Details", "Edit", new { id = Model.ApplicantId }) |
-    <a asp-action="Index">Back to List</a>
+    @*@Html.ActionLink("Edit Your Details", "Edit", new { id = Model.ApplicantId }) |*@
+    <a asp-action="Edit" asp-route-id="@Model.ApplicantId"> Edit Your Profile</a> |
+    <a asp-action="Index">Back to Week in Preview</a>
 </div>

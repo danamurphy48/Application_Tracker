@@ -83,6 +83,7 @@ namespace ApplicationTracker.Controllers
             //return applicant1;
         }
 
+        //GET
         public IActionResult CreateApplication()
         {
             return View();
