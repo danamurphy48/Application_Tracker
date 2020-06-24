@@ -4,7 +4,7 @@
     ViewData["Title"] = "ListInterview";
 }
 
-<h1>ListInterview</h1>
+<h1>List All Interviews</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,10 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.InterviewId)
+                @Html.DisplayNameFor(model => model.Application.Company.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.PositionTitle)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterviewRound)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.InterviewType)
@@ -25,7 +31,19 @@
                 @Html.DisplayNameFor(model => model.InterviewLocation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InterviewRound)
+                @Html.DisplayNameFor(model => model.Application.Company.OfficeLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.Address.StreetAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.Address.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.Address.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.Address.ZipCode)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ThankYouNote)
@@ -34,14 +52,54 @@
                 @Html.DisplayNameFor(model => model.Notes)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationId)
+                @Html.DisplayNameFor(model => model.Application.JobInformation.PositionSummary)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HiringManagerId)
+                @Html.DisplayNameFor(model => model.HiringManager.FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InterviewerId)
+                @Html.DisplayNameFor(model => model.HiringManager.LastName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiringManager.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiringManager.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interviewer.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interviewer.LastName)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Interviewer.Position)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Interviewer.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interviewer.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interviewer.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.CompanyNote.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.CompanyNote.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.CompanyNote.Culture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.CompanyNote.RecentNews)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Application.Company.CompanyNote.Charity)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -49,10 +107,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.InterviewId)
+                @Html.DisplayFor(modelItem => item.Application.Company.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.PositionTitle)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterviewRound)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InterviewType)
@@ -61,7 +125,19 @@
                 @Html.DisplayFor(modelItem => item.InterviewLocation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InterviewRound)
+                @Html.DisplayFor(modelItem => item.Application.Company.OfficeLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.Address.StreetAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.Address.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.Address.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.Address.ZipCode)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ThankYouNote)
@@ -70,13 +146,52 @@
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ApplicationId)
+                @Html.DisplayFor(modelItem => item.Application.JobInformation.PositionSummary)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HiringManagerId)
+                @Html.DisplayFor(modelItem => item.HiringManager.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InterviewerId)
+                @Html.DisplayFor(modelItem => item.HiringManager.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HiringManager.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HiringManager.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interviewer.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interviewer.LastName)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Interviewer.Position)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Interviewer.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interviewer.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interviewer.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.CompanyNote.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.CompanyNote.Product)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.CompanyNote.Culture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.CompanyNote.RecentNews)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.CompanyNote.Charity)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

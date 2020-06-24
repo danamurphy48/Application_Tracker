@@ -8,8 +8,8 @@
 
 <p>
     <a asp-action="CreateApplication">Create New Application Log</a> |
-    <a asp-action="Edit">Edit Your Profile</a> |
-    <a asp-action="Details">View Your Profile Information</a>
+    <a asp-action="Edit" asp-route-id="@Model.UpcomingApplications[0].ApplicantId">Edit Your Profile</a> |
+    <a asp-action="Details" asp-route-id="@Model.UpcomingApplications[0].ApplicantId">View Your Profile Information</a>
 </p>
 
 <h2>Applications To Follow Up On</h2>

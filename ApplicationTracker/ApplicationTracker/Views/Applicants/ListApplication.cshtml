@@ -4,7 +4,7 @@
     ViewData["Title"] = "ListApplication";
 }
 
-<h1>ListApplication</h1>
+<h1>View All Applications</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,14 +12,21 @@
 <table class="table">
     <thead>
         <tr>
+            @*<th>
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationId)
+                @Html.DisplayNameFor(model => model.Company.CompanyName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PositionTitle)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.DateApplied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationStatus)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ResumeUsed)
@@ -36,11 +43,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.JobUrl)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyId)
+
+            @*<th>*@
+                @*@Html.DisplayNameFor(model => model.CompanyId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NetworkId)
@@ -50,7 +55,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.JobInfoId)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -58,13 +63,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ApplicationId)
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PositionTitle)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateApplied)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationStatus)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ResumeUsed)
@@ -81,25 +89,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.JobUrl)
             </td>
+
+            @*<td>
+            @Html.DisplayFor(modelItem => item.CompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NetworkId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicantId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobInfoId)
+        </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.ApplicationStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NetworkId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicantId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JobInfoId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.ApplicationId }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.ApplicationId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.ApplicationId  })
             </td>
         </tr>
 }
