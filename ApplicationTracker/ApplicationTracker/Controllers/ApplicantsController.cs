@@ -43,7 +43,7 @@ namespace ApplicationTracker.Controllers
             //var upcomingInterveiws = final all interviews I want to display
             //var upcomingapplications = find all applications I want to display
             //applicationViewModel.UpcomingInterviews = //that query
-            var UpcomingApplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).Include(a => a.Company).ThenInclude(c => c.Address).ToList();
+            var UpcomingApplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId && ).Include(a => a.Company).ThenInclude(c => c.CompanyNote).ToList();
             applicationViewModel.UpcomingApplications = UpcomingApplications;
 
             var UpcomingInterviews = _context.Interviews
