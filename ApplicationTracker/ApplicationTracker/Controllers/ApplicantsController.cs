@@ -44,28 +44,30 @@ namespace ApplicationTracker.Controllers
             //applicationViewModel.UpcomingInterviews = //that query
 
             ApplicationIndexViewModel applicationViewModel = new ApplicationIndexViewModel();
-            var UpcomingApplications = _context.Applications
+            var UpcomingApplications = _context.Applications //do I want to rename UpcomingApplications here so that I can use it for UpcomingInterviews?
                 .Where(a => a.ApplicantId == applicant.ApplicantId)
                 .Include(a => a.JobInformation)
                 .Include(a => a.Company)
                     .ThenInclude(a => a.CompanyNote)
                 .ToList();
             applicationViewModel.UpcomingApplications = UpcomingApplications;
-            //cascading query ! //do I want to rename UpcomingApplications here so that I can use it for Upcoming interviews?
             var UpcomingInterviews = _context.Interviews
                 .Where(i => i.Application.ApplicantId == applicant.ApplicantId)
-                //.Where(i => i.ApplicationId == .)
                 .Include(i => i.Interviewer)
                 .Include(i => i.HiringManager)
                 .Include(i => i.Application)
                     .ThenInclude(i => i.Company)
                     .ThenInclude(i => i.CompanyNote)
-               // .Include(i => i.Address) 
+                .Include("Application.Company.Address") //works. could use cascading/multiple queries or other options as below
                 .ToList();
-            UpcomingInterviews = _context.Interviews.Include(i => i.Application.Company.Address).ToList();
+            //UpcomingInterviews = _context.Interviews.Include("Application.Company.Address").ToList(); //works
+            //UpcomingInterviews = _context.Interviews.Include(i => i.Application.Company.Address).ToList(); //works
+            //foreach (var item in UpcomingInterviews) //works
+            //{
+            //    _context.Interviews.Include(i => i.Application.Company.Address).ToList();
+            //}
             applicationViewModel.UpcomingInterviews = UpcomingInterviews;
 
-            //applicationViewModel.Company.CompanyName = CompanyName;
             return View(applicationViewModel/*, applicantapplications*/);
         }
 

@@ -1,0 +1,83 @@
+﻿@model ApplicationTracker.Models.Interview
+
+@{
+    ViewData["Title"] = "CreateInterview";
+}
+
+<h1>CreateInterview</h1>
+
+<h4>Interview</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateInterview">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Application.Company.CompanyName" class="control-label"></label>
+                <input asp-for="Application.Company.CompanyName" class="form-control" />
+                <span asp-validation-for="Application.Company.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.PositionTitle" class="control-label"></label>
+                <input asp-for="Application.PositionTitle" class="form-control" />
+                <span asp-validation-for="Application.PositionTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTime" class="control-label"></label>
+                <input asp-for="DateTime" class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterviewRound" class="control-label"></label>
+                <input asp-for="InterviewRound" class="form-control" />
+                <span asp-validation-for="InterviewRound" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterviewType" class="control-label"></label>
+                <input asp-for="InterviewType" class="form-control" />
+                <span asp-validation-for="InterviewType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterviewLocation" class="control-label"></label>
+                <input asp-for="InterviewLocation" class="form-control" />
+                <span asp-validation-for="InterviewLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ThankYouNote" /> @Html.DisplayNameFor(model => model.ThankYouNote)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationId" class="control-label"></label>
+                <input asp-for="ApplicationId" class="form-control" />
+                <span asp-validation-for="ApplicationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HiringManagerId" class="control-label"></label>
+                <input asp-for="HiringManagerId" class="form-control" />
+                <span asp-validation-for="HiringManagerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterviewerId" class="control-label"></label>
+                <input asp-for="InterviewerId" class="form-control" />
+                <span asp-validation-for="InterviewerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
