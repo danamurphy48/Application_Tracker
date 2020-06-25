@@ -1,0 +1,78 @@
+﻿@model ApplicationTracker.Models.Interview
+
+@{
+    ViewData["Title"] = "DetailsInterview";
+}
+
+<h1>DetailsInterview</h1>
+
+<div>
+    <h4>Interview</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InterviewId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InterviewId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InterviewType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InterviewType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InterviewLocation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InterviewLocation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InterviewRound)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InterviewRound)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThankYouNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThankYouNote)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HiringManagerId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HiringManagerId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InterviewerId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InterviewerId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

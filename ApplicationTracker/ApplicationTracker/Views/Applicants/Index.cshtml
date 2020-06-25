@@ -120,9 +120,12 @@
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.InterviewId)
-            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.UpcomingInterviews[0].Application.Company.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpcomingInterviews[0].Application.PositionTitle)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.UpcomingInterviews[0].DateTime)
             </th>
@@ -157,9 +160,12 @@
         @foreach (var item in Model.UpcomingInterviews)
         {
             <tr>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.InterviewId)
-                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Application.Company.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Application.PositionTitle)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateTime)
                 </td>

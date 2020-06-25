@@ -21,7 +21,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.PositionTitle)
             </th>
-
             <th>
                 @Html.DisplayNameFor(model => model.DateApplied)
             </th>
@@ -41,7 +40,7 @@
                 @Html.DisplayNameFor(model => model.RequistionNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.JobUrl)
+                @Html.DisplayNameFor(model => model.JobInformation.PositionSummary)
             </th>
 
             @*<th>*@
@@ -87,21 +86,20 @@
                 @Html.DisplayFor(modelItem => item.RequistionNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.JobUrl)
+                @Html.DisplayFor(modelItem => item.JobInformation.PositionSummary)
             </td>
-
             @*<td>
-            @Html.DisplayFor(modelItem => item.CompanyId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NetworkId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicantId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobInfoId)
-        </td>*@
+                @Html.DisplayFor(modelItem => item.CompanyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetworkId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobInfoId)
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new {  id=item.ApplicationId }) |
                 @Html.ActionLink("Details", "Details", new {  id=item.ApplicationId  }) |

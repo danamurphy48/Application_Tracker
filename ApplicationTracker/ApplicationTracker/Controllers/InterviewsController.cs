@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using ApplicationTracker.Data;
+using ApplicationTracker.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApplicationTracker.Controllers
 {
+   // [Authorize(Roles = "Applicant")]
     public class InterviewsController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public InterviewsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: InterviewsController
         public ActionResult Index()
         {
@@ -16,29 +27,46 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: InterviewsController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicant = _context.Applicants.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+
+            if (applicant == null)
+            {
+                return NotFound();
+            }
             return View();
         }
 
         // GET: InterviewsController/Create
         public ActionResult Create()
         {
-            return View();
+            return View("CreateInterview");
         }
 
         // POST: InterviewsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> CreateInterviewAsync(Interview interview) //use a view model?, put in a bind
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+
+                interview.Application.ApplicantId = applicant.ApplicantId;
+                _context.Interviews.Add(interview);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Applicants");
             }
             catch
             {
-                return View();
+                return View("CreateInterview");
             }
         }
 
