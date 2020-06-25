@@ -71,9 +71,19 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: InterviewsController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var interview = await _context.Interviews.FindAsync(id);
+            if (interview == null)
+            {
+                return NotFound();
+            }
+
+            return View(interview);
         }
 
         // POST: InterviewsController/Edit/5
