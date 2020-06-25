@@ -4,17 +4,17 @@
     ViewData["Title"] = "DetailsInterview";
 }
 
-<h1>DetailsInterview</h1>
+<h1>Interview Details</h1>
 
 <div>
     <h4>Interview</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InterviewId)
+            @Html.DisplayNameFor(model => model.Application.Company.CompanyName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InterviewId)
+            @Html.DisplayFor(model => model.Application.PositionTitle)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateTime)
