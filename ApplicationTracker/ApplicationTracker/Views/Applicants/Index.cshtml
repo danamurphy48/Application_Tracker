@@ -105,7 +105,7 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Create Interview", "CreateInterview", "Interviews",  new { id = item.ApplicationId })
             </td>
             </tr>
@@ -115,9 +115,9 @@
 
 <h2>Interviews This Week</h2>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -160,46 +160,46 @@
     <tbody>
         @foreach (var item in Model.UpcomingInterviews)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Application.Company.CompanyName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Application.PositionTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InterviewType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InterviewLocation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InterviewRound)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ThankYouNote)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.ApplicationId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HiringManagerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InterviewerId)
-                </td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.InterviewId }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Company.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.PositionTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterviewType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterviewLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterviewRound)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThankYouNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ApplicationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HiringManagerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterviewerId)
+        </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Interviews", new { id = item.InterviewId }) |
+                @Html.ActionLink("DetailsInterview", "Details", "Interviews", new { id=item.InterviewId }) |
+                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
         }
     </tbody>
 </table>
