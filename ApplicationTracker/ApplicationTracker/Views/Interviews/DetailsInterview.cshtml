@@ -14,6 +14,12 @@
             @Html.DisplayNameFor(model => model.Application.Company.CompanyName)
         </dt>
         <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Application.Company.CompanyName)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Application.PositionTitle)
+        </dt>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Application.PositionTitle)
         </dd>
         <dt class = "col-sm-2">
@@ -53,26 +59,62 @@
             @Html.DisplayFor(model => model.Notes)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApplicationId)
+            @Html.DisplayNameFor(model => model.HiringManager.FirstName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApplicationId)
+            @Html.DisplayFor(model => model.HiringManager.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HiringManagerId)
+            @Html.DisplayNameFor(model => model.HiringManager.LastName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HiringManagerId)
+            @Html.DisplayFor(model => model.HiringManager.LastName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InterviewerId)
+            @Html.DisplayNameFor(model => model.HiringManager.Phone)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InterviewerId)
+            @Html.DisplayFor(model => model.HiringManager.Phone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HiringManager.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HiringManager.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Interviewer.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Interviewer.FirstName)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Interviewer.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Interviewer.LastName)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Interviewer.Phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Interviewer.Phone)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Interviewer.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Interviewer.Email)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Interviewer.Notes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Interviewer.Notes)
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit Interview", "Edit", new { id = Model.InterviewId }) |
+    <a asp-controller="Applicants" asp-action="Index">Back to Week in Preview</a>
 </div>

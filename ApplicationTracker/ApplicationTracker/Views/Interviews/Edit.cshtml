@@ -1,53 +1,46 @@
 ﻿@model ApplicationTracker.Models.Interview
 
 @{
-    ViewData["Title"] = "CreateInterview";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Add an Interview</h1>
+<h1>Edit an Interview</h1>
 
 <h4>Interview</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateInterview">
-            <input type="hidden" asp-for="ApplicationId" />
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-            <label asp-for="Application.Company.CompanyName" class="control-label"></label>
-            <input asp-for="Application.Company.CompanyName" class="form-control" />
-            <span asp-validation-for="Application.Company.CompanyName" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Application.PositionTitle" class="control-label"></label>
-            <input asp-for="Application.PositionTitle" class="form-control" />
-            <span asp-validation-for="Application.PositionTitle" class="text-danger"></span>
-        </div>*@
+            <input type="hidden" asp-for="InterviewId" />
+            <input type="hidden" asp-for="ApplicationId" />
+            <input type="hidden" asp-for="InterviewerId" />
+            <input type="hidden" asp-for="HiringManagerId" />
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
                 <input asp-for="DateTime" class="form-control" />
                 <span asp-validation-for="DateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="InterviewRound" class="control-label"></label>
-                <input asp-for="InterviewRound" class="form-control" />
-                <span asp-validation-for="InterviewRound" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="InterviewType" class="control-label"></label>
-                @*<input asp-for="InterviewType" class="form-control" />*@
-                <select asp-for="InterviewType" name="InterviewType">
-                    <option value="Video">Video</option>
-                    <option value="Phone">Phone</option>
-                    <option value="InPerson">In Person</option>
-                    <option value="Other">Other</option>
-                </select>
+                <input asp-for="InterviewType" class="form-control" />
                 <span asp-validation-for="InterviewType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="InterviewLocation" class="control-label"></label>
                 <input asp-for="InterviewLocation" class="form-control" />
                 <span asp-validation-for="InterviewLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterviewRound" class="control-label"></label>
+                @*<input asp-for="InterviewRound" class="form-control" />*@
+                <select asp-for="InterviewType" name="InterviewType">
+                    <option value="Video">Video</option>
+                    <option value="Phone">Phone</option>
+                    <option value="InPerson">In Person</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="InterviewRound" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -73,7 +66,7 @@
                 <label asp-for="HiringManager.Phone" class="control-label"></label>
                 <input asp-for="HiringManager.Phone" class="form-control" />
                 <span asp-validation-for="HiringManager.Phone" class="text-danger"></span>
-            </div>
+            </div>            
             <div class="form-group">
                 <label asp-for="HiringManager.Email" class="control-label"></label>
                 <input asp-for="HiringManager.Email" class="form-control" />
@@ -93,7 +86,7 @@
                 <label asp-for="Interviewer.Phone" class="control-label"></label>
                 <input asp-for="Interviewer.Phone" class="form-control" />
                 <span asp-validation-for="Interviewer.Phone" class="text-danger"></span>
-            </div>
+            </div>            
             <div class="form-group">
                 <label asp-for="Interviewer.Email" class="control-label"></label>
                 <input asp-for="Interviewer.Email" class="form-control" />
@@ -105,14 +98,15 @@
                 <span asp-validation-for="Interviewer.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" asp-route-id="@Model.Application.ApplicantId">Back to Week in Preview</a>
+    <a asp-controller="Applicants" asp-action="Index">Back to Week in Preview</a>
+    @*<a asp-action="Index">Back to List</a>*@
 </div>
 
 @section Scripts {
