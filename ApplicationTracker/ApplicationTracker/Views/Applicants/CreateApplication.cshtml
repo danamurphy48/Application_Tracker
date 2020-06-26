@@ -63,31 +63,71 @@
                 </select>
                 <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="ApplicationId" class="control-label"></label>
-                <input asp-for="ApplicationId" class="form-control" />
-                <span asp-validation-for="ApplicationId" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-                <label asp-for="CompanyId" class="control-label"></label>
-                <input asp-for="CompanyId" class="form-control" />
-                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="JobInformation.PositionSummary" class="control-label"></label>
+                <input asp-for="JobInformation.PositionSummary" class="form-control" />
+                <span asp-validation-for="JobInformation.PositionSummary" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NetworkId" class="control-label"></label>
-                <input asp-for="NetworkId" class="form-control" />
-                <span asp-validation-for="NetworkId" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-                <label asp-for="ApplicantId" class="control-label"></label>
-                <input asp-for="ApplicantId" class="form-control" />
-                <span asp-validation-for="ApplicantId" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-                <label asp-for="JobInfoId" class="control-label"></label>
-                <input asp-for="JobInfoId" class="form-control" />
-                <span asp-validation-for="JobInfoId" class="text-danger"></span>
-            </div>*@
+                <label asp-for="JobInformation.JobSalary" class="control-label"></label>
+                <input asp-for="JobInformation.JobSalary" class="form-control" />
+                <span asp-validation-for="JobInformation.JobSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobInformation.FullTime" class="control-label"></label>
+                <input asp-for="JobInformation.FullTime" class="form-control" />
+                <span asp-validation-for="JobInformation.FullTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobInformation.Contract" class="control-label"></label>
+                <input asp-for="JobInformation.Contract" class="form-control" />
+                <span asp-validation-for="JobInformation.Contract" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="JobInformation.Shift" class="control-label"></label>
+                <input asp-for="JobInformation.Shift" class="form-control" />
+                <span asp-validation-for="JobInformation.Shift" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Network.NetworkFirstName" class="control-label"></label>
+                <input asp-for="Network.NetworkFirstName" class="form-control" />
+                <span asp-validation-for="Network.NetworkFirstName" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Network.NetworkLastName" class="control-label"></label>
+                <input asp-for="Network.NetworkLastName" class="form-control" />
+                <span asp-validation-for="Network.NetworkLastName" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Network.NetworkPosition" class="control-label"></label>
+                <input asp-for="Network.NetworkPosition" class="form-control" />
+                <span asp-validation-for="Network.NetworkPosition" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Company.OfficeLocation" class="control-label"></label>
+                <input asp-for="Company.OfficeLocation" class="form-control" />
+                <span asp-validation-for="Company.OfficeLocation" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Company.Address.StreetAddress" class="control-label"></label>
+                <input asp-for="Company.Address.StreetAddress" class="form-control" />
+                <span asp-validation-for="Company.Address.StreetAddress" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Company.Address.City" class="control-label"></label>
+                <input asp-for="Company.Address.City" class="form-control" />
+                <span asp-validation-for="Company.Address.City" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Company.Address.State" class="control-label"></label>
+                <input asp-for="Company.Address.State" class="form-control" />
+                <span asp-validation-for="Company.Address.State" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Company.Address.ZipCode" class="control-label"></label>
+                <input asp-for="Company.Address.ZipCode" class="form-control" />
+                <span asp-validation-for="Company.Address.ZipCode" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
