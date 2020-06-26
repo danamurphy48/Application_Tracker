@@ -10,9 +10,9 @@ namespace ApplicationTracker.Models
     {
         [Key]
         public int InterviewerId { get; set; }
-        [Display(Name ="First Name")]
+        [Display(Name ="Interviewer - First Name")]
         public string FirstName { get; set; }
-        [Display(Name ="Last Name")]
+        [Display(Name ="Interviewer - Last Name")]
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
