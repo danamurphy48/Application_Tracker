@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using ApplicationTracker.ActionFilters;
+using ApplicationTracker.Services;
 
 namespace ApplicationTracker
 {
@@ -45,6 +46,8 @@ namespace ApplicationTracker
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<IApiService, APICalls>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

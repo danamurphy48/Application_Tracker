@@ -5,38 +5,64 @@
 }
 
 <h1>ScoreChart</h1>
+<body>
+    <div>
+        <h4>Assessment</h4>
+        <hr />
+        <dl class="row">
+            @*<dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.AssessmentId)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.AssessmentId)
+                </dd>*@
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AssessmentName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AssessmentName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Score)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Score)
+            </dd>
+            @*<dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.ApplicantId)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.ApplicantId)
+                </dd>*@
+        </dl>
+    </div>
+    <div>
+        @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+        <a asp-action="Index">Back to List</a>
+    </div>
+    <canvas id="goodCanvas1" width="400" height="100" aria-label="Hello ARIA World" role="img"></canvas>
+    @*<canvas id="myChart" width="400" height="400"></canvas>*@
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
 
-<div>
-    <h4>Assessment</h4>
-    <hr />
-    <dl class="row">
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssessmentId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AssessmentId)
-        </dd>*@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssessmentName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AssessmentName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Score)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Score)
-        </dd>
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApplicantId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApplicantId)
-        </dd>*@
-    </dl>
-</div>
-<div>
-    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
-    <a asp-action="Index">Back to List</a>
-</div>
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45]
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" async defer></script>
+</body>
