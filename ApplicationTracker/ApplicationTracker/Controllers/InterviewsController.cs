@@ -8,6 +8,7 @@ using ApplicationTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApplicationTracker.Controllers
 {
@@ -44,7 +45,7 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: InterviewsController/Create
-        public ActionResult Create()
+        public ActionResult CreateInterview()
         {
             return View("CreateInterview");
         }
@@ -58,10 +59,12 @@ namespace ApplicationTracker.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+                //var application = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).SingleOrDefault();
 
-                interview.Application.ApplicantId = applicant.ApplicantId;
+                //interview.Application.ApplicantId = application.ApplicantId;
                 _context.Interviews.Add(interview);
                 await _context.SaveChangesAsync();
+                
                 return RedirectToAction("Index", "Applicants");
             }
             catch
@@ -89,16 +92,42 @@ namespace ApplicationTracker.Controllers
         // POST: InterviewsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> EditAsync(int id, Interview interview)
         {
-            try
+            if(id != interview.InterviewId)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
+            if(ModelState.IsValid)
             {
-                return View();
+                try
+                {
+                    _context.Update(interview);
+                    await _context.SaveChangesAsync();
+                    //return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if(!InterviewExists(interview.InterviewId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Index", "Applicants");
             }
+            return View(interview);
+        }
+        private bool InterviewExists(int id)
+        {
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+            //var interviews = _context.Interviews.Where(i => i.Application.Applicant.ApplicantId == applicant.ApplicantId);
+
+            return _context.Interviews.Any(i => i.InterviewId == id);
         }
 
         // GET: InterviewsController/Delete/5

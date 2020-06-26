@@ -4,7 +4,7 @@
     ViewData["Title"] = "CreateInterview";
 }
 
-<h1>Add a new Interview</h1>
+<h1>Add an Interview</h1>
 
 <h4>Interview</h4>
 <hr />
@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <form asp-action="CreateInterview">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Application.Company.CompanyName" class="control-label"></label>
                 <input asp-for="Application.Company.CompanyName" class="form-control" />
                 <span asp-validation-for="Application.Company.CompanyName" class="text-danger"></span>
@@ -21,7 +21,7 @@
                 <label asp-for="Application.PositionTitle" class="control-label"></label>
                 <input asp-for="Application.PositionTitle" class="form-control" />
                 <span asp-validation-for="Application.PositionTitle" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
                 <input asp-for="DateTime" class="form-control" />
@@ -59,19 +59,24 @@
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ApplicationId" class="control-label"></label>
-                <input asp-for="ApplicationId" class="form-control" />
-                <span asp-validation-for="ApplicationId" class="text-danger"></span>
+                <label asp-for="HiringManager.FirstName" class="control-label"></label>
+                <input asp-for="HiringManager.FirstName" class="form-control" />
+                <span asp-validation-for="HiringManager.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HiringManagerId" class="control-label"></label>
-                <input asp-for="HiringManagerId" class="form-control" />
-                <span asp-validation-for="HiringManagerId" class="text-danger"></span>
+                <label asp-for="HiringManager.LastName" class="control-label"></label>
+                <input asp-for="HiringManager.LastName" class="form-control" />
+                <span asp-validation-for="HiringManager.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="InterviewerId" class="control-label"></label>
-                <input asp-for="InterviewerId" class="form-control" />
-                <span asp-validation-for="InterviewerId" class="text-danger"></span>
+                <label asp-for="HiringManager.Phone" class="control-label"></label>
+                <input asp-for="HiringManager.Phone" class="form-control" />
+                <span asp-validation-for="HiringManager.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HiringManager.Email" class="control-label"></label>
+                <input asp-for="HiringManager.Email" class="form-control" />
+                <span asp-validation-for="HiringManager.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -81,7 +86,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Applicants/Index">Back to List</a>
 </div>
 
 @section Scripts {
