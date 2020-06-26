@@ -45,24 +45,26 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: InterviewsController/Create
-        public ActionResult CreateInterview()
+        public ActionResult CreateInterview(int id)
         {
-            return View("CreateInterview");
+            Interview interview = new Interview();
+
+            interview.ApplicationId = id;
+
+            return View("CreateInterview", interview);
         }
 
         // POST: InterviewsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateInterviewAsync(Interview interview) //use a view model?, put in a bind
+        public async Task<IActionResult> CreateInterviewAsync(int id, Interview interview) //use a view model?, put in a bind
         {
             try
             {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
-                //var application = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).SingleOrDefault();
-
-                //interview.Application.ApplicantId = application.ApplicantId;
                 _context.Interviews.Add(interview);
+
+                UpdateApplicationStatusToInterview(interview.ApplicationId, "Interview");
+
                 await _context.SaveChangesAsync();
                 
                 return RedirectToAction("Index", "Applicants");
@@ -71,6 +73,26 @@ namespace ApplicationTracker.Controllers
             {
                 return View("CreateInterview");
             }
+        }
+
+        public void UpdateApplicationStatusToInterview(int applicationId, string statusToUpdateTo)
+        {
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+
+            // TODO: null check after querying
+            var statusChange = _context.Applications.Where(a => a.ApplicationId == applicationId).SingleOrDefault();
+            statusChange.ApplicationStatus = statusToUpdateTo;
+            // save changes
+
+
+            //if (statusChange.ApplicationStatus == "Submitted")
+            //{
+            //    statusChange.ApplicationStatus = "Interview";
+            //    _context.Applications.Update(a => a.Applications.ApplicationStatus = );
+            //}
+
+            // return statusChange;
         }
 
         // GET: InterviewsController/Edit/5

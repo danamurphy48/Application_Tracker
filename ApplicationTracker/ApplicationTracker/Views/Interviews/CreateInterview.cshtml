@@ -11,17 +11,18 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateInterview">
+            <input type="hidden" asp-for="ApplicationId" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<div class="form-group">
-                <label asp-for="Application.Company.CompanyName" class="control-label"></label>
-                <input asp-for="Application.Company.CompanyName" class="form-control" />
-                <span asp-validation-for="Application.Company.CompanyName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Application.PositionTitle" class="control-label"></label>
-                <input asp-for="Application.PositionTitle" class="form-control" />
-                <span asp-validation-for="Application.PositionTitle" class="text-danger"></span>
-            </div>*@
+            <label asp-for="Application.Company.CompanyName" class="control-label"></label>
+            <input asp-for="Application.Company.CompanyName" class="form-control" />
+            <span asp-validation-for="Application.Company.CompanyName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Application.PositionTitle" class="control-label"></label>
+            <input asp-for="Application.PositionTitle" class="form-control" />
+            <span asp-validation-for="Application.PositionTitle" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
                 <input asp-for="DateTime" class="form-control" />
