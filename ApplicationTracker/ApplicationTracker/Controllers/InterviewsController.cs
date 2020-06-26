@@ -41,7 +41,12 @@ namespace ApplicationTracker.Controllers
             {
                 return NotFound();
             }
-            return View();
+            var interview = await _context.Interviews.FindAsync(id);
+            if (interview == null)
+            {
+                return NotFound();
+            }
+            return View("DetailsInterview", interview);
         }
 
         // GET: InterviewsController/Create

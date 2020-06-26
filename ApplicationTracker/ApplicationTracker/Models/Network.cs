@@ -10,11 +10,11 @@ namespace ApplicationTracker.Models
     {
         [Key]
         public int NetworkId { get; set; }
-        [Display(Name ="First Name")]
+        [Display(Name ="Network - First Name")]
         public string NetworkFirstName { get; set; }
-        [Display(Name ="Last Name")]
+        [Display(Name ="Network -Last Name")]
         public string NetworkLastName { get; set; }
-        [Display(Name ="Contact's Job Title")]
+        [Display(Name ="Network Contact's Job Title")]
         public string NetworkPosition { get; set; }
     }
 }
