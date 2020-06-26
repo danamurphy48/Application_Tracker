@@ -4,14 +4,16 @@ using ApplicationTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApplicationTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200626182535_AddedModelsAssesmentQuestionAnswer")]
+    partial class AddedModelsAssesmentQuestionAnswer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,29 +43,6 @@ namespace ApplicationTracker.Data.Migrations
                     b.HasKey("AddressId");
 
                     b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("ApplicationTracker.Models.Answer", b =>
-                {
-                    b.Property<int>("AnswerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AnswerQuestion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AnswerId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("ApplicationTracker.Models.Applicant", b =>
@@ -149,29 +128,6 @@ namespace ApplicationTracker.Data.Migrations
                     b.HasIndex("NetworkId");
 
                     b.ToTable("Applications");
-                });
-
-            modelBuilder.Entity("ApplicationTracker.Models.Assessment", b =>
-                {
-                    b.Property<int>("AssessmentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ApplicantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AssessmentName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Score")
-                        .HasColumnType("float");
-
-                    b.HasKey("AssessmentId");
-
-                    b.HasIndex("ApplicantId");
-
-                    b.ToTable("Assessments");
                 });
 
             modelBuilder.Entity("ApplicationTracker.Models.Company", b =>
@@ -373,26 +329,6 @@ namespace ApplicationTracker.Data.Migrations
                     b.ToTable("Networks");
                 });
 
-            modelBuilder.Entity("ApplicationTracker.Models.Question", b =>
-                {
-                    b.Property<int>("QuestionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AssessmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionPrompt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QuestionId");
-
-                    b.HasIndex("AssessmentId");
-
-                    b.ToTable("Questions");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -422,8 +358,8 @@ namespace ApplicationTracker.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b99fa979-7716-4482-9b88-58fd42294d39",
-                            ConcurrencyStamp = "afb0bdd9-4c6e-4752-ac2c-31d7215a8a9f",
+                            Id = "77dfe5e2-49cd-429f-a592-9a69c9d83983",
+                            ConcurrencyStamp = "26e55d8c-b44e-4e62-ad13-0fd7d15df2de",
                             Name = "Applicant",
                             NormalizedName = "APPLICANT"
                         });
@@ -598,15 +534,6 @@ namespace ApplicationTracker.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ApplicationTracker.Models.Answer", b =>
-                {
-                    b.HasOne("ApplicationTracker.Models.Question", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ApplicationTracker.Models.Applicant", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
@@ -637,15 +564,6 @@ namespace ApplicationTracker.Data.Migrations
                         .HasForeignKey("NetworkId");
                 });
 
-            modelBuilder.Entity("ApplicationTracker.Models.Assessment", b =>
-                {
-                    b.HasOne("ApplicationTracker.Models.Applicant", "Applicant")
-                        .WithMany()
-                        .HasForeignKey("ApplicantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ApplicationTracker.Models.Company", b =>
                 {
                     b.HasOne("ApplicationTracker.Models.Address", "Address")
@@ -672,15 +590,6 @@ namespace ApplicationTracker.Data.Migrations
                     b.HasOne("ApplicationTracker.Models.Interviewer", "Interviewer")
                         .WithMany()
                         .HasForeignKey("InterviewerId");
-                });
-
-            modelBuilder.Entity("ApplicationTracker.Models.Question", b =>
-                {
-                    b.HasOne("ApplicationTracker.Models.Assessment", "Assessment")
-                        .WithMany()
-                        .HasForeignKey("AssessmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
