@@ -10,9 +10,9 @@ namespace ApplicationTracker.Models
     {
         [Key]
         public int HiringManagerId { get; set; }
-        [Display(Name ="First Name")]
+        [Display(Name ="Hiring Manager - First Name")]
         public string FirstName { get; set; }
-        [Display(Name ="Last Name")]
+        [Display(Name ="Hiring Manager - Last Name")]
         public string LastName { get; set; }
        // [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
