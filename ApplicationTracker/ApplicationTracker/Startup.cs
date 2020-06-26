@@ -16,6 +16,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using ApplicationTracker.ActionFilters;
 using ApplicationTracker.Services;
+using ApplicationTracker.Contracts;
 
 namespace ApplicationTracker
 {
