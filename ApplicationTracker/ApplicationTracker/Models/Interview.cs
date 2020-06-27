@@ -23,6 +23,7 @@ namespace ApplicationTracker.Models
         public int? InterviewRound { get; set; }
         [Display(Name = "Thank you notes sent?")]
         public bool ThankYouNote { get; set; }
+        [Display(Name = "Questions to Ask during Interview / Notes")]
         public string Notes { get; set; }
 
         [ForeignKey("Application")]
