@@ -28,9 +28,33 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: AssessmentsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+            if (applicant == null)
+            {
+                return NotFound();
+            }
+
+            var assessment = _context.Assessments.Where(a => a.AssessmentId == id).SingleOrDefault();
+
+            if (assessment == null)
+            {
+                return NotFound();
+            }
+            //var score = _context.Assessments.Select(s => s.Score).ToArray();
+            //if (score == null)
+            //{
+            //    return NotFound();
+            //}
+
+
+            return View("ScoreChart", assessment);
         }
 
         // GET: AssessmentsController/Create

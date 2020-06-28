@@ -4,7 +4,7 @@
     ViewData["Title"] = "ScoreChart";
 }
 
-<h1>ScoreChart</h1>
+<h1>Score Chart</h1>
 <body>
     <div>
         <h4>Assessment</h4>
@@ -40,10 +40,10 @@
         @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
         <a asp-action="Index">Back to List</a>
     </div>
-    <canvas id="goodCanvas1" width="400" height="100" aria-label="Hello ARIA World" role="img"></canvas>
+    <canvas id="Score" width="400" height="100" aria-label="Hello ARIA World" role="img"></canvas>
     @*<canvas id="myChart" width="400" height="400"></canvas>*@
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx = document.getElementById('Score').getContext('2d');
         var chart = new Chart(ctx, {
             // The type of chart we want to create
             type: 'bar',
@@ -52,7 +52,7 @@
             data: {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                 datasets: [{
-                    //label: 'Technical Skills',
+                    label: 'Technical Skills',
                     backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
                     data: [0, 10, 5, 2, 20, 30, 45]
