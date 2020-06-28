@@ -11,6 +11,7 @@ namespace ApplicationTracker.Models
     {
         [Key]
         public int AssessmentId { get; set; }
+        [Display(Name = "Asssessment")]
         public string AssessmentName { get; set; }
         public double Score { get; set; }
       

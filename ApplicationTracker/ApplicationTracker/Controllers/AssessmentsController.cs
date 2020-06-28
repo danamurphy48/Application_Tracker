@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ApplicationTracker.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApplicationTracker.Controllers
 {
-    [Authorize(Roles = "Applicant")]
+    //[Authorize(Roles = "Applicant")]
     public class AssessmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,7 +21,10 @@ namespace ApplicationTracker.Controllers
         // GET: AssessmentsController
         public ActionResult Index()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+            var applicantAssessments = _context.Assessments.Where(q => q.ApplicantId == applicant.ApplicantId).ToList();
+            return View(applicantAssessments);
         }
 
         // GET: AssessmentsController/Details/5
