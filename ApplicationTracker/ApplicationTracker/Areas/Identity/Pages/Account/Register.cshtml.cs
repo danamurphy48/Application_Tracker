@@ -77,7 +77,7 @@ namespace ApplicationTracker.Areas.Identity.Pages.Account
             Roles = new SelectList(roles, "Name", "Name");
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = "/Applicants/Create")
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null/*"/Applicants/Create"*/)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -92,6 +92,12 @@ namespace ApplicationTracker.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, Input.Role);
                     }
                     _logger.LogInformation("User created a new account with password.");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    if(Input.Role == "Applicant")
+                    {
+                        return RedirectToAction("Create", "Applicants");
+                    }
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
