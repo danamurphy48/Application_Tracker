@@ -193,7 +193,7 @@ namespace ApplicationTracker.Controllers
 
             return View(applicant);
         }
-
+        [HttpPost]
         public async Task<IActionResult> EditApplication(int id, [Bind("ApplicantId,FirstName,LastName,Industry,Email,IdentityUserId")] Application application)
         {
 
@@ -253,5 +253,11 @@ namespace ApplicationTracker.Controllers
                 return View();
             }
         }
+        public IActionResult ApplicationDetails(int id)
+        {
+            var application = _context.Applications.Where(a => a.ApplicationId == id).FirstOrDefault();
+            return View("DetailsApplication", application);
+        }
+
     }
 }
