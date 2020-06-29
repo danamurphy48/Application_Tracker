@@ -103,7 +103,7 @@
                         @Html.DisplayFor(modelItem => item.JobInfoId)
                     </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
+                @Html.ActionLink("Edit", "EditApplication", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Create Interview", "CreateInterview", "Interviews",  new { id = item.ApplicationId })

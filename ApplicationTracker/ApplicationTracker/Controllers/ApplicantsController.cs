@@ -71,18 +71,22 @@ namespace ApplicationTracker.Controllers
             return View(applicationViewModel/*, applicantapplications*/);
         }
 
-        private bool ApplicationsExist(List<Application> applications)
+        //private bool ApplicationsExist(List<Application> applications)
+        //{
+        //    if(applications == null)
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //    //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    //var applicant1 = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+        //    //return _context.Applications.Any(a => a.ApplicationId == id);
+        //    //_context.Applications.Where(a => a.ApplicantId == applicant1.ApplicantId);
+        //    //return applicant1;
+        //}
+        private bool ApplicationsExist(int id)
         {
-            if(applications == null)
-            {
-                return false;
-            }
-            return true;
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var applicant1 = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
-            //return _context.Applications.Any(a => a.ApplicationId == id);
-            //_context.Applications.Where(a => a.ApplicantId == applicant1.ApplicantId);
-            //return applicant1;
+            return _context.Applications.Any(a => a.ApplicationId == id);
         }
 
         //GET
@@ -154,22 +158,7 @@ namespace ApplicationTracker.Controllers
             var applicant = _context.Applicants.Where(i => i.ApplicantId == id).SingleOrDefault();
             return View(applicant);
         }
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    var applicant = await _context.Applicants.FindAsync(id);
-
-        //    if (applicant == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(applicant);
-        //}
         // POST: ApplicantsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -187,36 +176,54 @@ namespace ApplicationTracker.Controllers
                 return View();
             }
         }
-        //public async Task<IActionResult> Edit(int id, [Bind("ApplicantId,FirstName,LastName,Industry,Email,IdentityUserId")] Applicant applicant)
-        //{
 
-        //    if (id != applicant.ApplicantId)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> EditApplication(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(applicant);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ApplicantExists(applicant.ApplicantId))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(applicant);
-        //}
+            var applicant = await _context.Applicants.FindAsync(id);
+
+            if (applicant == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicant);
+        }
+
+        public async Task<IActionResult> EditApplication(int id, [Bind("ApplicantId,FirstName,LastName,Industry,Email,IdentityUserId")] Application application)
+        {
+
+            if (id != application.ApplicationId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(application);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ApplicationsExist(application.ApplicationId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(application);
+        }
 
         //private bool ApplicantExists(int id)
         //{

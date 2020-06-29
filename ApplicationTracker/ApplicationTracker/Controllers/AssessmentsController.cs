@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ApplicationTracker.Data;
+using ApplicationTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,6 @@ namespace ApplicationTracker.Controllers
             //    return NotFound();
             //}
 
-
             return View("ScoreChart", assessment);
         }
 
@@ -79,15 +79,44 @@ namespace ApplicationTracker.Controllers
         }
 
         // GET: AssessmentsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Quiz(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+            if (applicant == null)
+            {
+                return NotFound();
+            }
+
+            var assessment = _context.Assessments.Where(a => a.AssessmentId == id).SingleOrDefault();
+
+            if (assessment == null)
+            {
+                return NotFound();
+            }
+            var quiz = _context.Questions.Where(a => a.AssessmentId == assessment.AssessmentId).SingleOrDefault();
+            if (quiz == null)
+            {
+                return NotFound();
+            }
+            var choice = _context.Answers.Where(a => a.QuestionId == quiz.QuestionId).ToArray();
+            if (choice == null)
+            {
+                return NotFound();
+            }
+
+            return View("Quiz", choice);
+
         }
 
         // POST: AssessmentsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Quiz(int? id, Answer answer)
         {
             try
             {
