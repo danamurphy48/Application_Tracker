@@ -10,6 +10,7 @@
     <a asp-action="CreateApplication">Create New Application Log</a> |
     <a asp-action="Edit" asp-route-id="@Model.UpcomingApplications[0].ApplicantId">Edit Your Profile</a> |
     <a asp-action="Details" asp-route-id="@Model.UpcomingApplications[0].ApplicantId">View Your Profile Information</a>
+    <a asp-action="ListApplication" asp-route-id="@Model.UpcomingApplications[0].CompanyId">View all Jobs for a Company</a>
 </p>
 
 <h2>Applications To Follow Up On</h2>
@@ -104,8 +105,8 @@
                     </td>*@
             <td>
                 @Html.ActionLink("Edit", "EditApplication", new { id = item.ApplicationId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId }) |
+                @Html.ActionLink("Details", "DetailsApplication", new { id = item.ApplicationId }) |
+                @Html.ActionLink("List applications for the same company", "ListApplication", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Create Interview", "CreateInterview", "Interviews",  new { id = item.ApplicationId })
             </td>
             </tr>
