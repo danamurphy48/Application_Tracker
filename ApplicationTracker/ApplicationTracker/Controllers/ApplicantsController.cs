@@ -259,12 +259,12 @@ namespace ApplicationTracker.Controllers
             return View("DetailsApplication", application);
         }
 
-        public IActionResult ListApplication(int id)
-        {
-            var application = _context.Applications.Where(a => a.ApplicationId == id).FirstOrDefault();
-            var applicationCompany = _context.Companies.Where(a => a.CompanyId == application.CompanyId).ToList();
-            return View("ListApplication", applicationCompany);
-        }
+        //public IActionResult ListApplication(int id)
+        //{
+        //    var application = _context.Applications.Where(a => a.ApplicationId == id).FirstOrDefault();
+        //    var applicationCompany = _context.Companies.Where(a => a.CompanyId == application.CompanyId).ToList();
+        //    return View("ListApplication", applicationCompany);
+        //}
 
     }
 }
