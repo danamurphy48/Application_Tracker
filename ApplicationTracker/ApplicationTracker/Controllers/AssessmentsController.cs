@@ -8,6 +8,7 @@ using ApplicationTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApplicationTracker.Controllers
 {
@@ -98,18 +99,33 @@ namespace ApplicationTracker.Controllers
             {
                 return NotFound();
             }
-            var quiz = _context.Questions.Where(a => a.AssessmentId == assessment.AssessmentId).SingleOrDefault();
+
+            var quiz = _context.Questions.Where(a => a.AssessmentId == assessment.AssessmentId).ToList();
             if (quiz == null)
             {
                 return NotFound();
             }
-            var choice = _context.Answers.Where(a => a.QuestionId == quiz.QuestionId).ToArray();
-            if (choice == null)
+            // var question = _context.Answers.Where(q => q.Question.Answers == quiz.Answers);
+            //foreach (var question in quiz)
+            //{
+            //    _context.Questions.Where(a => a.QuestionId == question.QuestionId).ToList();
+            //    //foreach (var answer in question)
+            //    //{
+            //    //    _context.Answers.Where(a => a.AnswerId == question.Answers.AnswerId);
+            //    //}
+            //}
+            foreach (var answer in quiz)
             {
-                return NotFound();
+                _context.Answers.Where(a => a.Question.QuestionId == answer.QuestionId).ToList();
             }
 
-            return View("Quiz", choice);
+            //var choice = _context.Answers.Where(a => a.QuestionId == quiz.QuestionId).ToArray();
+            //if (choice == null)
+            //{
+            //    return NotFound();
+            //}
+
+            return View("QuizTest", quiz);
 
         }
 
@@ -128,6 +144,67 @@ namespace ApplicationTracker.Controllers
             }
         }
 
+        //GET: AssessmentsController/Delete/5
+        //public IActionResult QuizStart(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+
+        //    if (applicant == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    AssessmentViewModel assessmentViewModel = new AssessmentViewModel();
+
+        //    var assessment = _context.Assessments.Where(a => a.AssessmentId == id).SingleOrDefault();
+
+        //    if (assessment == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var question = _context.Questions.Where(q => q.AssessmentId == assessment.AssessmentId).ToList();
+        //    if (question == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    foreach (var answer in question)
+        //    {
+        //        _context.Answers.Where(a => a.Question.QuestionId == answer.QuestionId).ToList();
+        //    }
+        //    assessmentViewModel.Questions = question;
+
+        //    var answers = _context.Answers.Where(a => a.AnswerId == question.AnswerId).ToList();
+        //    var answers = _context.Assessments.Where(a => a.AssessmentId == assessment.AssessmentId)
+        //    var answers = _context.Answers.Where(a => a.Question.Assessment.AssessmentId == id).ToList();
+        //    .Include(a => a.)
+        //    assessmentViewModel.Answers = answers;
+
+
+        //    return View(assessmentViewModel);
+        //}
+
+        //POST: AssessmentsController/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult QuizStart(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
         // GET: AssessmentsController/Delete/5
         public ActionResult Delete(int id)
         {
@@ -138,6 +215,27 @@ namespace ApplicationTracker.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        
+        // GET
+        public ActionResult Score(int id)
+        {
+            return View();
+        }
+
+        // POST: AssessmentsController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Score(int id, IFormCollection collection)
         {
             try
             {

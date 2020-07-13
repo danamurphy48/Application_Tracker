@@ -28,6 +28,13 @@ namespace ApplicationTracker.Controllers
             return View();
         }
 
+        public IActionResult SendMail(/*Applicant applicant, ApplicationIndexViewModel applicationIndexViewModel*/)
+        {
+            Mail mail = new Mail();
+            mail.SendWeeklyEmail(/*applicant, applicationIndexViewModel*/);
+            return View("SendMail", mail);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

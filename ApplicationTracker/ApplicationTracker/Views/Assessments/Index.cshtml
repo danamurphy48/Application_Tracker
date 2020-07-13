@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.ApplicantId)
             </td>*@
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Start Quiz", "Quiz", new {  id=item.AssessmentId }) |
                 @Html.ActionLink("Score Break Down", "Details", new {  id=item.AssessmentId }) 
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>

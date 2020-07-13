@@ -1,0 +1,42 @@
+﻿@model ApplicationTracker.Models.AssessmentViewModel
+
+@{
+    ViewData["Title"] = "QuizStart";
+}
+
+<h1>QuizStart</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Questions[0].QuestionPrompt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Answers[0].AnswerQuestion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Questions)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionPrompt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answers)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

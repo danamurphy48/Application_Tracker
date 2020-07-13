@@ -11,7 +11,9 @@ namespace ApplicationTracker.Models
     {
         [Key]
         public int AnswerId { get; set; }
+        [Display(Name = "Answer")]
         public string AnswerQuestion { get; set; }
+        [Display(Name = "Correct")]
         public bool IsCorrect { get; set; }
 
         [ForeignKey("Question")]

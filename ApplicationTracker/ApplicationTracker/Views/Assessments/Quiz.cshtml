@@ -6,14 +6,17 @@
 
 <h1>Quiz</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.AnswerId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Question)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AnswerQuestion)
@@ -21,17 +24,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.IsCorrect)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.QuestionId)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.AnswerId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AnswerQuestion)
@@ -39,9 +45,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IsCorrect)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.QuestionId)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
