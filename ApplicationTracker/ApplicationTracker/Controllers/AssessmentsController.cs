@@ -8,6 +8,7 @@ using ApplicationTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApplicationTracker.Controllers
@@ -106,6 +107,7 @@ namespace ApplicationTracker.Controllers
                 return NotFound();
             }
             // var question = _context.Answers.Where(q => q.Question.Answers == quiz.Answers);
+           // var question = _context.Questions.Where(q => q.Answers == quiz.);
             //foreach (var question in quiz)
             //{
             //    _context.Questions.Where(a => a.QuestionId == question.QuestionId).ToList();
@@ -116,7 +118,7 @@ namespace ApplicationTracker.Controllers
             //}
             foreach (var answer in quiz)
             {
-                _context.Answers.Where(a => a.Question.QuestionId == answer.QuestionId).ToList();
+                _context.Answers.Where(a => a.QuestionId == answer.QuestionId).ToList(); 
             }
 
             //var choice = _context.Answers.Where(a => a.QuestionId == quiz.QuestionId).ToArray();
@@ -124,7 +126,7 @@ namespace ApplicationTracker.Controllers
             //{
             //    return NotFound();
             //}
-
+            ViewData["AnswerId"] = new SelectList(_context.Answers, "AnswerQuestion", "AnswerQuestion", quiz);
             return View("QuizTest", quiz);
 
         }
@@ -232,7 +234,7 @@ namespace ApplicationTracker.Controllers
             return View();
         }
 
-        // POST: AssessmentsController/Delete/5
+        // POST: AssessmentsController/Score/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Score(int id, IFormCollection collection)

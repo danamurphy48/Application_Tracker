@@ -6,7 +6,7 @@
 
 <h1>Create a New Application</h1>
 
-<h4>Application</h4>
+<h4>Enter relevant application data. Most fields are optional.</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label asp-for="ApplicationStatus" class="control-label"></label>
                 <select asp-for="ApplicationStatus" name="ApplicationStatus">
-                    <option value="InProgress">Application in Progress</option>
+                    @*<option value="InProgress">Application in Progress</option>*@
                     <option value="Submitted">Submitted</option>
                     <option value="FollowedUp">Followed Up</option>
                     <option value="Interview">Interview</option>

@@ -29,22 +29,25 @@ namespace ApplicationTracker.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
             var applicantapplications = _context.Applications.Where(a => a.ApplicantId == applicant.ApplicantId).ToList();
-            if(applicantapplications.Count == 0) //do i need applicant.application.ApplicationId to find only applications tied to that applicant
+            if(applicantapplications.Count == 0) 
             {
-                //return RedirectToAction("CreateApplication");
-                //return RedirectToAction("Index", "Interviews");
-                return RedirectToAction(nameof(CreateApplication)); //change to redirecttoAction CreateApplication or 'go apply for jobs'
+                return RedirectToAction(nameof(CreateApplication));
             }
-            //Company company = new Company();
-            //company.CompanyName = applicationViewModel.Company.CompanyName;
-            //var companyName = _context.Companies.Where(c => c.CompanyName == app
-            //var companyAddress = _context.Applications.Include("Company").ThenInclude("Address")
-            //var upcomingInterveiws = final all interviews I want to display
-            //var upcomingapplications = find all applications I want to display
+
             //applicationViewModel.UpcomingInterviews = //that query
 
+            return ApplicationInterviewViewModel();
+
+
+        }
+
+        private IActionResult ApplicationInterviewViewModel()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
+
             ApplicationIndexViewModel applicationViewModel = new ApplicationIndexViewModel();
-            var UpcomingApplications = _context.Applications //do I want to rename UpcomingApplications here so that I can use it for UpcomingInterviews?
+            var UpcomingApplications = _context.Applications
                 .Where(a => a.ApplicantId == applicant.ApplicantId)
                 .Include(a => a.JobInformation)
                 .Include(a => a.Company)
@@ -58,17 +61,10 @@ namespace ApplicationTracker.Controllers
                 .Include(i => i.Application)
                     .ThenInclude(i => i.Company)
                     .ThenInclude(i => i.CompanyNote)
-                .Include("Application.Company.Address") //works. could use cascading/multiple queries or other options as below
+                .Include("Application.Company.Address")
                 .ToList();
-            //UpcomingInterviews = _context.Interviews.Include("Application.Company.Address").ToList(); //works
-            //UpcomingInterviews = _context.Interviews.Include(i => i.Application.Company.Address).ToList(); //works
-            //foreach (var item in UpcomingInterviews) //works
-            //{
-            //    _context.Interviews.Include(i => i.Application.Company.Address).ToList();
-            //}
             applicationViewModel.UpcomingInterviews = UpcomingInterviews;
-
-            return View(applicationViewModel/*, applicantapplications*/);
+            return View(applicationViewModel);
         }
 
         //private bool ApplicationsExist(List<Application> applications)
@@ -101,14 +97,11 @@ namespace ApplicationTracker.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicant = _context.Applicants.Where(a => a.IdentityUserId == userId).SingleOrDefault();
-            //if (!ApplicationsExist(application.ApplicantId/*, applicant*/))
-            //{
+
                 application.ApplicantId = applicant.ApplicantId;
                 _context.Applications.Add(application);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            //}
-            //return View("CreateApplication", application);
         }
 
         // GET: ApplicantsController/Details/5
@@ -268,3 +261,29 @@ namespace ApplicationTracker.Controllers
 
     }
 }
+//ApplicationIndexViewModel applicationViewModel = new ApplicationIndexViewModel();
+//var UpcomingApplications = _context.Applications //do I want to rename UpcomingApplications here so that I can use it for UpcomingInterviews?
+//    .Where(a => a.ApplicantId == applicant.ApplicantId)
+//    .Include(a => a.JobInformation)
+//    .Include(a => a.Company)
+//        .ThenInclude(a => a.CompanyNote)
+//    .ToList();
+//applicationViewModel.UpcomingApplications = UpcomingApplications;
+//var UpcomingInterviews = _context.Interviews
+//    .Where(i => i.Application.ApplicantId == applicant.ApplicantId)
+//    .Include(i => i.Interviewer)
+//    .Include(i => i.HiringManager)
+//    .Include(i => i.Application)
+//        .ThenInclude(i => i.Company)
+//        .ThenInclude(i => i.CompanyNote)
+//    .Include("Application.Company.Address") //works. could use cascading/multiple queries or other options as below
+//    .ToList();
+////UpcomingInterviews = _context.Interviews.Include("Application.Company.Address").ToList(); //works
+////UpcomingInterviews = _context.Interviews.Include(i => i.Application.Company.Address).ToList(); //works
+////foreach (var item in UpcomingInterviews) //works
+////{
+////    _context.Interviews.Include(i => i.Application.Company.Address).ToList();
+////}
+//applicationViewModel.UpcomingInterviews = UpcomingInterviews;
+
+//return View(applicationViewModel/*, applicantapplications*/);
